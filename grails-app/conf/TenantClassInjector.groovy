@@ -24,12 +24,17 @@ public class TenantClassInjector implements ClassInjector {
   private static final Log LOG = LogFactory.getLog(TenantClassInjector.class);
 
   public void performInjection(SourceUnit source, GeneratorContext context, ClassNode classNode) {
+	performInjection(source, classNode)
+  }
+
+  public void performInjection(SourceUnit source, ClassNode classNode) {
     final boolean hasTenantId = GrailsASTUtils.hasOrInheritsProperty(classNode, "tenantId");
     if (!hasTenantId) {
       System.out.println("[GrailsDomainInjector] Adding property [tenantId] to class [" + classNode.getName() + "]");
       classNode.addProperty("tenantId", Modifier.PUBLIC, new ClassNode(Integer.class), new ConstantExpression(0), null, null);
     }
   }
+
 
 
   public boolean shouldInject(URL url) {
