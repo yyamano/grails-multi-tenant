@@ -1,0 +1,1 @@
+FIXME. I can't find licence information at http://www.grails.org/plugin/multi-tenant.
