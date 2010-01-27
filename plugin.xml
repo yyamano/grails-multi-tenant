@@ -1,4 +1,4 @@
-<plugin name='multi-tenant' version='0.15' grailsVersion='1.1 &gt; *'>
+<plugin name='multi-tenant' version='0.16' grailsVersion='1.2.0 &gt; *'>
   <author>Eric Martineau</author>
   <authorEmail>ericm@infusionsoft.com</authorEmail>
   <title>Multi-Tenant Plugin</title>
@@ -8,10 +8,20 @@ the proxying of spring beans for a multi-tenant environment.
 </description>
   <documentation>http://grails.org/MultiTenant+Plugin</documentation>
   <resources>
+    <resource>BuildConfig</resource>
     <resource>TenantClassInjector</resource>
     <resource>TenantFilters</resource>
   </resources>
   <dependencies>
-    <plugin name='falconeUtil' version='0.8' />
+    <plugin name='falconeUtil' version='0.9' />
+    <resolvers>
+      <resolver type='grailsPlugins' name='grailsPlugins' />
+    </resolvers>
+    <dependency group='opensymphony' name='oscache' version='2.4' conf='runtime' transitive='true'>
+      <excludes group='*' name='jms' />
+      <excludes group='*' name='commons-logging' />
+      <excludes group='*' name='servlet-api' />
+    </dependency>
   </dependencies>
+  <behavior />
 </plugin>
