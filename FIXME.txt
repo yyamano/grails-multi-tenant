@@ -1,2 +1,10 @@
-* LICENSE.txt
+KNOWN ISSUES
+
+* test/test and other empty directories
+http://jira.codehaus.org/browse/GRAILS-5614
+
+* No license information
+
+Added LICENCE.txt, but empty.
+
 * review change in TenantClassInjector.groovy
