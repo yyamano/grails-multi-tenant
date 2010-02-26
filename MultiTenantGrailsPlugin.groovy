@@ -202,9 +202,11 @@ the proxying of spring beans for a multi-tenant environment.
     if (ConfigurationHolder.config.tenant.mode != "singleTenant") {
       //Add a nullable contraint for tenantId.
       application.domainClasses.each {DefaultGrailsDomainClass domainClass ->
-        domainClass.constraints?.get("tenantId")?.applyConstraint(ConstrainedProperty.NULLABLE_CONSTRAINT, true);
-        domainClass.clazz.metaClass.beforeInsert = {
-          if (tenantId == null) tenantId = 0
+        if (TenantUtils.isAnnotated(domainClass.clazz)) {
+          domainClass.constraints?.get("tenantId")?.applyConstraint(ConstrainedProperty.NULLABLE_CONSTRAINT, true);
+          domainClass.clazz.metaClass.beforeInsert = {
+            if (tenantId == null) tenantId = 0
+          }
         }
       }
     }
